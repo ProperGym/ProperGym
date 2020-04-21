@@ -58,12 +58,12 @@ public class Main {
 	public static boolean loginAdministrador(Scanner sc) {
 		boolean logeado = true;
 		String usuarioA = "";
-		String contraseÒaA = "";
+		String contrasenaA = "";
 		System.out.println("Login Administrador");
 		System.out.println("Usuario");
 		usuarioA = sc.nextLine();
 		System.out.println("ContraseÒa");
-		contraseÒaA = sc.nextLine();
+		contrasenaA = sc.nextLine();
 		System.out.println("2. Atr·s");
 		
 		return logeado;
@@ -72,13 +72,13 @@ public class Main {
 	public static boolean loginCliente(Scanner sc) {
 		boolean logeado = true;
 		String usuarioC = "";
-		String contraseÒaC = "";
+		String contrasenaC = "";
 		System.out.println("Login Cliente");
 		System.out.println("Usuario");
 		usuarioC = sc.nextLine();
-		System.out.println("ContraseÒa");
-		contraseÒaC = sc.nextLine();
-		System.out.println("2. Atr·s");
+		System.out.println("Contraseña");
+		contrasenaC = sc.nextLine();
+		System.out.println("2. Atrás");
 		return logeado;
 	}
 	
@@ -94,9 +94,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		String usuarioA = "";
-		String contraseÒaA = "";
+		String contrasenaA = "";
 		String usuarioC = "";
-		String contraseÒaC = "";
+		String contrasenaC = "";
 		boolean logA = false;
 		boolean logC = false;
 		Scanner sc = new Scanner(System.in);
