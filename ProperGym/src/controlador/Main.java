@@ -10,7 +10,7 @@ public class Main {
 	
 	public static int menuPrincipal(Scanner sc) {
 		System.out.println("<-------------------BIENVENIDO A PROPERGYM--------------------->");
-		System.out.println("Digite el numero de su elecciÛn:");
+		System.out.println("Digite el numero de su eleccion:");
 		System.out.println("1. Administrador");
 		System.out.println("2. Cliente");
 		System.out.println("3. Visualizar");
@@ -51,7 +51,7 @@ public class Main {
 		String correo;
 		System.out.println("Ingrese usuario:");
 		usuario = reg.nextLine();
-		System.out.println("Ingrese contraseÒa:");
+		System.out.println("Ingrese contrasena:");
 		contrasena = reg.nextLine();
 		System.out.println("Ingrese Primer Nombre:");
 		Nombre = reg.nextLine();
@@ -59,7 +59,7 @@ public class Main {
 		Apellido = reg.nextLine();
 		System.out.println("Ingrese Fecha de Nacimiento:");
 		fnac = reg.nextLine();
-		System.out.println("Ingrese Correo ElectrÛnico:");
+		System.out.println("Ingrese Correo Electronico:");
 		correo = reg.nextLine();
 		String [] cliente = {usuario, contrasena, Nombre, Apellido, fnac, correo};
 		
@@ -76,7 +76,7 @@ public class Main {
 		System.out.println("<---------------------LOGIN ADMINISTRADOR------------------->");
 		System.out.println("Usuario");
 		usuarioA = admi.nextLine();
-		System.out.println("ContraseÒa");
+		System.out.println("Contrasena");
 		contrasenaA = admi.nextLine();
 		LectorCSVA lec = new LectorCSVA();
 		
@@ -88,7 +88,7 @@ public class Main {
 		}else {
 			System.out.println("Login Incorrecto");
 			System.out.println("1. Volver a intentar");
-			System.out.println("2. Atr·s");
+			System.out.println("2. Atras");
 			opcion = admi.nextInt();
 			if(opcion == 1) {
 				logeado=loginAdministrador(sc);
@@ -102,25 +102,25 @@ public class Main {
 	public static boolean loginCliente(Scanner sc) {
 		boolean logeado = true;
 		String usuarioC;
-		String contraseÒaC;
+		String contrasenaC;
 		int opcion = 0;
 		Scanner cliente = new Scanner(System.in);
 		
 		System.out.println("<---------------------LOGIN CLIENTE------------------------->");
 		System.out.println("Ingrese su usuario:");
 		usuarioC = cliente.nextLine();
-		System.out.println("Ingrese su contraseÒa:");
-		contraseÒaC = cliente.nextLine();
+		System.out.println("Ingrese su contrasena:");
+		contrasenaC = cliente.nextLine();
 		LectorCSVA lec = new LectorCSVA();
 		
-		logeado = lec.readFileA(pathC, usuarioC, contraseÒaC);
+		logeado = lec.readFileA(pathC, usuarioC, contrasenaC);
 		
 		if(logeado == true) {
 			visualizarActiv(sc);
 		}else {
 			System.out.println("Login Incorrecto");
 			System.out.println("1. Volver a intentar");
-			System.out.println("2. Atr·s");
+			System.out.println("2. Atras");
 			opcion = cliente.nextInt();
 			if(opcion == 1) {
 				logeado=loginCliente(sc);
@@ -142,9 +142,9 @@ public class Main {
 		System.out.println("Actividades del Gimnasio");
 		System.out.println("Actividades del Gimnasio");
 		System.out.println("Actividades del Gimnasio");
-		System.out.println("Digite el numero de su elecciÛn:");
+		System.out.println("Digite el numero de su eleccion:");
 		System.out.println("1. Registrarse/MembresÌa");
-		System.out.println("2. Atr·s");
+		System.out.println("2. Atras");
 		opcion = vis.nextInt();
 		if(opcion == 2) {
 			opcion = menuPrincipal(sc);
@@ -164,7 +164,7 @@ public class Main {
 		System.out.println("Actividades del Gimnasio");
 		System.out.println("Actividades del Gimnasio");
 		System.out.println("Actividades del Gimnasio");
-		System.out.println("1. Atr·s");
+		System.out.println("1. Atras");
 		opcion = vis.nextInt();
 		if(opcion == 1) {
 			opcion = menuPrincipal(sc);
@@ -173,9 +173,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		String usuarioA = "";
-		String contraseÒaA = "";
+		String contrasenaA = "";
 		String usuarioC = "";
-		String contraseÒaC = "";
+		String contrasenaC = "";
 		boolean logA = false;
 		boolean logC = false;
 		Scanner sc = new Scanner(System.in);
