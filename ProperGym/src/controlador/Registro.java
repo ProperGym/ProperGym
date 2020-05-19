@@ -1,6 +1,5 @@
 package controlador;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -60,13 +59,13 @@ public static void RegActividades(List<Actividad> actividades, String path) {
 			CsvWriter writer = new CsvWriter(new FileWriter(path, true), ',');
 			
 			for(Actividad actividad : actividades) {
-				writer.write(actividad.getIdAct()); 
 				writer.write(actividad.getNombre());
+				writer.write(actividad.getIdAct()); 
 				writer.write(actividad.getIdSala());
 				writer.write(Integer.toString(actividad.getCapacidadSala())); //convertir los INT a STRING
+				writer.write(actividad.getIdEmpleado());
 				writer.write(actividad.getFecha());
 				writer.write(actividad.getHora());
-				writer.write(actividad.getIdEmpleado());
 				writer.write(Integer.toString(actividad.getMaxParticipantes()));
 				writer.write(Integer.toString(actividad.getnParticipantes()));
 				
@@ -78,4 +77,25 @@ public static void RegActividades(List<Actividad> actividades, String path) {
 			e.printStackTrace();
 		}
 	}
+
+
+public static void RegClientesAct(String idAct, String idSala, String fecha, String hora, String username, String path) {
+	
+	
+	try {
+		CsvWriter writer = new CsvWriter(new FileWriter(path, true), ',');
+			writer.write(username);
+			writer.write(idAct); 
+			writer.write(idSala);
+			writer.write(fecha);
+			writer.write(hora);
+			
+			writer.endRecord();
+		
+		writer.close();
+	}catch (IOException e) {
+		e.printStackTrace();
+	}
+}
+
 }

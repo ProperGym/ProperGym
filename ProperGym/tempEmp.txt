@@ -1,0 +1,14 @@
+Prueba,Cero,E000
+Primero,Uno,E001
+Segundo,Dos,E002
+Tercero,Tres,E003
+Francisco,Perez,E004
+Fritz,Vega,16751116 
+Mufutau,Velasquez,16800625 
+Leo,Church,16870605 
+Vaughan,Hale,16071116 
+Damian,Gibson,16640708 
+Bevis,Kim,16890814 
+Phillip,Holcomb,16231001 
+Wesley,Herrera,16730820
+Francis,Kline,16741029

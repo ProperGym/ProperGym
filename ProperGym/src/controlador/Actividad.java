@@ -1,18 +1,18 @@
 package controlador;
 
-//import java.util.Date; //para la fecha si se quiere en formato oficial
-
 public class Actividad {
 	
-	private String nombre;
-	private String idAct;
+	private String nombre; /* Nombre o tÌtulo de la actividad. Ejemplo: "NataciÛn Adultos - Nivel 1 - Tarde 2*/
+	private String idAct; /* ID de la actividad. Ejemplo: "NatAN1T2" */
 	private String idSala;
-	private int capacidadSala;
+	private int capacidadSala; /* Capacidad fÌsica de la sala - cu·ntos clientes puede haber. Depende de la actividad si no tienen equipamiento fijo. */
 	private String fecha;
 	private String hora;
 	private String idEmpleado;
-	private int maxParticipantes;
-	private int nParticipantes;
+	private int maxParticipantes; /* M·ximo de participantes que se ha decidido que pueden apuntarse a una actividad.
+									Si es una actividad individual (entrenador personal), maxParticipantes = 1; 
+								   	Si es grupal (clase), ser· igual a la capacidad de la sala. */
+	private static int nParticipantes; /* N˙mero de participantes apuntados en una actividad.*/
 	
 	public Actividad(String nombre, String idAct, String idSala, int capacidadSala, String fecha, String hora, String idEmpleado,
 			int maxParticipantes, int nParticipantes) {
@@ -28,6 +28,18 @@ public class Actividad {
 		this.nParticipantes = nParticipantes;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getIdAct() {
+		return idAct;
+	}
+	public void setIdAct(String idAct) {
+		this.idAct = idAct;
+	}
 	public String getIdSala() {
 		return idSala;
 	}
@@ -37,22 +49,6 @@ public class Actividad {
 	public int getCapacidadSala() {
 		return capacidadSala;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getIdAct() {
-		return idAct;
-	}
-
-	public void setIdAct(String idAct) {
-		this.idAct = idAct;
-	}
-
 	public void setCapacidadSala(int aforo) {
 		this.capacidadSala = aforo;
 	}
@@ -77,7 +73,6 @@ public class Actividad {
 	public int getMaxParticipantes() {
 		return maxParticipantes;
 	}
-
 	public void setMaxParticipantes(int maxParticipantes) {
 		this.maxParticipantes = maxParticipantes;
 	}
@@ -87,6 +82,4 @@ public class Actividad {
 	public void setnParticipantes(int nParticipantes) {
 		this.nParticipantes = nParticipantes;
 	}
-
 }
-

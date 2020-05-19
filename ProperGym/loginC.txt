@@ -1,3 +1,0 @@
-client1;123;Julio;Serrano;19/04/1996;julioserrano@gmail.com
-client2;234;Pierina;Chavez;05/12/1992; pierinacha@gmail.com
-client3;345;Maritza;Gonzales;29/11/1985; mgonzales@gmail.com

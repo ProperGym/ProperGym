@@ -1,2 +1,2 @@
-root;root; Nicole;Avendaño
-user;user; Claudia; Soria
+root,root
+admin,admin

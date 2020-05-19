@@ -1,20 +1,16 @@
 package controlador;
 
-import java.awt.List;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
-
-import com.csvreader.CsvReader;
-import com.csvreader.CsvWriter;
 
 public class Main {
 	public static String pathA = "loginA.txt";
 	public static String pathC = "Clientes.csv";
-	public static String pathEmpleados = "Empleados.csv";
-	public static String pathActividades = "Actividades.csv";
+	public static String pathEmpleados = "Empleados.txt";
+	public static String pathActividades = "Actividades.txt";
+	public static String pathClientesActividades = "ClientesActividades.csv";
+	public static String logedUser;
 	
 	static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	static ArrayList<Empleado> empleados = new ArrayList<Empleado>();
@@ -24,9 +20,9 @@ public class Main {
 public static void main(String[] args) throws IOException {
 		
 		String usuarioA = "";
-		String contraseÒaA = "";
+		String passwordA = "";
 		String usuarioC = "";
-		String contraseÒaC = "";
+		String passwordC = "";
 		
 		boolean logA = false;
 		boolean logC = false;
@@ -40,12 +36,12 @@ public static void main(String[] args) throws IOException {
 	
 //MEN⁄ PRINCIPAL
 	public static int menuPrincipal(Scanner sc) throws IOException {
-		System.out.println("<-------------------BIENVENIDO A PROPERGYM--------------------->");
+		System.out.println("\n\n<-------------------BIENVENIDO A PROPERGYM--------------------->");
 		System.out.println("Digite el n˙mero de su elecciÛn:");
 		System.out.println("1. Administrador");
 		System.out.println("2. Cliente");
-		System.out.println("3. Visualizar Actividades - Registro");
-		//System.out.println("4. ProperGym - informaciÛn");
+		System.out.println("3. Visualizar Actividades - Registro membresÌa");
+		//System.out.println("4. ProperGym - InformaciÛn");
 		
 		//ELEGIMOS OPCI”N DEL MEN⁄
 		int opcion = 0;
@@ -81,26 +77,26 @@ public static void main(String[] args) throws IOException {
 		//LOGIN DEL ADMINISTRADOR
 		public static boolean loginAdministrador(Scanner sc) throws IOException {
 			
-			//Variable para comprobar si usuario y contrasea coinciden
+			//Variable para comprobar si usuario y password coinciden
 			boolean logeado = true;
 			
 			String usuarioA;
-			String contrasenaA;
+			String passwordA;
 			
 			int opcion = 0;
 			Scanner admi = new Scanner(System.in);
 			
-			System.out.println("<---------------------LOGIN ADMINISTRADOR------------------->");
+			System.out.println("\n\n<----------LOGIN ADMINISTRADOR---------->");
 			System.out.println("Usuario");
 			usuarioA = admi.nextLine();
 			System.out.println("ContraseÒa");
-			contrasenaA = admi.nextLine();
+			passwordA = admi.nextLine();
 			
 			//crear un nuevo lector csv
 			LoginCSV lec = new LoginCSV();
 			
 			//Comparar valores ingresados con los del archivo csv -> se usa clase LoginCSV
-			logeado = lec.readFileA(pathA, usuarioA, contrasenaA);
+			logeado = lec.readFileA(pathA, usuarioA, passwordA);
 			
 			//Si coinciden usuario y contraseÒa
 			if(logeado == true) {
@@ -108,7 +104,7 @@ public static void main(String[] args) throws IOException {
 				menuA(sc);
 			}else {
 				//Si no coinciden, se puede volver a intentar o ir atr·s
-				System.out.println("Login Incorrecto");
+				System.out.println("Login incorrecto - Los datos no coinciden");
 				System.out.println("1. Volver a intentar");
 				System.out.println("2. Atr·s");
 				opcion = admi.nextInt();
@@ -125,13 +121,14 @@ public static void main(String[] args) throws IOException {
 		public static int menuA(Scanner sc) throws IOException {
 			Scanner vis = new Scanner(System.in);
 			int opcion = 0;
+			System.out.println("\n\n<----------MEN⁄ ADMINISTRADOR---------->");
 			System.out.println("1. Administrar Actividades");
 			System.out.println("2. Administrar Empleados");
 			System.out.println("3. Salir");
 			opcion = vis.nextInt();
 			switch (opcion) {
 			case 1:
-				visualizarActivA(sc);
+				admActividades(sc);
 				break;
 			case 2:
 				admEmpleados(sc);
@@ -144,91 +141,56 @@ public static void main(String[] args) throws IOException {
 		}
 		
 		
-		//VISUALIZAR ACTIVIDADES POR EL ADMINISTRADOR
-		public static int visualizarActivA(Scanner sc) throws IOException {
-			Scanner vis = new Scanner(System.in);
-			int opcion = 0;
-			System.out.println("1. Actividades del dÌa");
-			System.out.println("2. Actividades de la semana");
-			System.out.println("3. Salir");
-			opcion = vis.nextInt();
-			switch (opcion) {
-			case 1:
-				visualizarActivDia(sc);
-				break;
-			case 2:
-				visualizarActivSemana(sc);
-				break;
-			case 3:
-				menuPrincipal(sc);
-				break;
-			}
-			return opcion;
-			
-			
-		}
-		
-		
-		//VISUALIZAR ACTIVIDADES DEL DIA
-			public static void visualizarActivDia(Scanner sc) throws IOException {
-				Scanner vis = new Scanner(System.in);
+		//ADMINISTRAR ACTIVIDADES
+			public static int admActividades(Scanner sc) throws IOException {
+				Scanner admA = new Scanner(System.in);
 				int opcion = 0;
-				System.out.println("1. AÒadir Actividad");
-				System.out.println("2. Modificar/Eliminar Actividad");
-				System.out.println("3. Atr·s\n");
-				
-				System.out.println("<----------VISUALIZAR ACTIVIDADES---------->");
+				System.out.println("\n\n<----------ADMINISTRAR ACTIVIDADES---------->\n");
 				Visualizacion v = new Visualizacion();
 				v.readFileActividades(pathActividades);
-
-				System.out.println("1. Atr·s");
-				System.out.println("2. Men˙ Administrador");
-				System.out.println("3. Men˙ Principal");
-				opcion = vis.nextInt();
+				
+				System.out.println("\n1. AÒadir Actividad");
+				System.out.println("2. Modificar Actividad");
+				System.out.println("3. Eliminar Actividad");
+				System.out.println("4. Atr·s");
+				
+				opcion = admA.nextInt();
+				
+				
 				switch (opcion) {
 				case 1:
-					visualizarActivA(sc);
+					agregarAct(sc);
 					break;
 				case 2:
-					menuA(sc);
+					modActividad(sc);
 					break;
 				case 3:
+					elimActividad(sc);
+					break;
+				case 4:
 					menuPrincipal(sc);
 					break;
 				}
-				
-			}
-		
-		
-		//VIASUALIZAR ACTIVIDADES DE LA SEMANA
-		public static void visualizarActivSemana(Scanner sc) throws IOException {
-			Scanner vis = new Scanner(System.in);
-			int opcion = 0;
-			System.out.println("1. AÒadir Actividad");
-			System.out.println("2. Modificar/Eliminar Actividad");
-			System.out.println("3. Atr·s");
-			System.out.println("<---------------------VISUALIZAR ACTIVIDADES------------------------->");
-
-			opcion = vis.nextInt();
-			switch (opcion) {
-			case 1:
-				agregarAct(sc);
-				break;
-			case 2:
-				modActividad(sc);
-				break;
-			case 3:
-				menuA(sc);
-				break;
+				return opcion;
 			}
 			
+	
+		//ELIMINAR ACTIVIDADES
+		private static void elimActividad(Scanner sc) throws IOException {
+			Scanner mod = new Scanner(System.in);
+			int opcion = 0;
+			
+			System.out.println("\n\n<----------ELIMINAR ACTIVIDAD---------->\n");
+			
+			Modificacion.deleteRecordAct();
+			opcion = admActividades(sc);
+			
 		}
-		
-		
-				//AGREGAR ACTIVIDADES
+
+		//AGREGAR ACTIVIDADES
 		private static void agregarAct(Scanner sc) throws IOException {
-			System.out.println("<----------AGREGAR ACTIVIDAD---------->");
 			 	Scanner agAct = new Scanner(System.in);
+			 	int opcion = 0;
 				
 			 	String nombre;
 				String idAct;
@@ -240,8 +202,10 @@ public static void main(String[] args) throws IOException {
 				int maxParticipantes;
 				int nParticipantes = 0;
 				
+				System.out.println("\n\n<----------AGREGAR ACTIVIDAD---------->");
+				
 				//PEDIDA DE DATOS
-				System.out.println("Ingrese nombre:");
+				System.out.println("Ingrese nombre de la actividad:");
 				nombre = agAct.nextLine();
 				System.out.println("Ingrese ID de actividad:");
 				idAct = agAct.nextLine();
@@ -250,15 +214,15 @@ public static void main(String[] args) throws IOException {
 				System.out.println("Ingrese capacidad de la sala:");
 				capacidadSala = agAct.nextInt();
 				agAct.nextLine(); //separaciÛn despuÈs de nextInt
-				System.out.println("Ingrese ID del empleado:");
+				System.out.println("Ingrese ID del entrenador:");
 				idEmpleado = agAct.nextLine();
-				System.out.println("Ingrese fecha de actividad:");
+				System.out.println("Ingrese fecha de la actividad:     (dd/mm/yyyy)");
 				fecha = agAct.nextLine();
-				System.out.println("Ingrese hora de la actividad:");
+				System.out.println("Ingrese hora de la actividad:     (hh:mm)");
 				hora = agAct.nextLine();
 				System.out.println("Indique si es individual (1) o grupal (2):");
-				int opcion = agAct.nextInt();
-				if (opcion == 1) {
+				int option = agAct.nextInt();
+				if (option == 1) {
 					maxParticipantes = 1;
 				}
 				else {
@@ -271,41 +235,63 @@ public static void main(String[] args) throws IOException {
 				//INGRESO EL CLIENTE EN EL CSV -> USO CLASE REGCLIENTE
 				Registro.RegActividades(actividades, pathActividades);
 				
-				System.out.print("Actividad registrada con Èxito");
+				System.out.print("Actividad " + idAct + " registrada con Èxito.\n");
+				opcion = admActividades(sc);
 		}
 		
 		//MODIFICAR ACTIVIDADES
-				private static void modActividad(Scanner sc) {
-					System.out.println("<----------MODIFICAR/ELIMINAR ACTIVIDAD---------->");
+				private static void modActividad(Scanner sc) throws IOException {
+					Scanner mod = new Scanner(System.in);
+					int opcion = 0;
 					
+					System.out.println("\n\n<----------MODIFICAR ACTIVIDAD---------->");
+					
+					Modificacion.editRecordAct();
+					opcion = admActividades(sc);
+								
 				}
 				
 					
 		//ADMINISTRAR ENTRENADORES
-		public static void admEmpleados(Scanner sc) throws IOException {
+		public static int admEmpleados(Scanner sc) throws IOException {
 			Scanner adm = new Scanner(System.in);
 			int opcion = 0;
+			System.out.println("\n\n<----------ADMINISTRAR ENTRENADORES---------->\n");
+			Visualizacion v = new Visualizacion();
+			v.readFileEmpleados(pathEmpleados);
 			
-			System.out.println("1. Visualizar empleados");
-			System.out.println("2. Agregar empleados");
-			System.out.println("3. Modificar empleados");
-			System.out.println("5. Salir");
+			System.out.println("1. Agregar empleados");
+			System.out.println("2. Modificar datos de empleados");
+			System.out.println("3. Eliminar empleados");
+			System.out.println("4. Atr·s");
+			
 			opcion = adm.nextInt();
 			switch (opcion) {
 			case 1:
-				visEmpleados(sc);
-				break;
-			case 2:
 				regEmpleados(sc);
 				break;
-			case 5:
-				menuPrincipal(sc);
+			case 2:
+				modEmpleados(sc);
+				break;
+			case 3:
+				elimEmpleados(sc);
+				break;
+			case 4:
+				menuA(sc);
 				break;
 			}
+			return opcion;
 		}
 		
+		
+		private static void elimEmpleados(Scanner sc) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		
 			//CREAR UN NUEVO EMPLEADO
-			public static void regEmpleados(Scanner sc) throws IOException {
+		public static void regEmpleados(Scanner sc) throws IOException {
 			Scanner emp = new Scanner(System.in);
 			
 				String nombre;
@@ -327,23 +313,19 @@ public static void main(String[] args) throws IOException {
 				Registro.RegEmpleados(empleados, pathEmpleados);
 				
 				System.out.print("Empleado registrado con Èxito");
-			}
+		}
 			
-			//VISUALIZAR EMPLEADOS -> USO CLASE VISUALIZACION
-			public static void visEmpleados (Scanner sc) throws IOException {
+			//MODIFICAR EMPLEADO
+		public static void modEmpleados(Scanner sc) throws IOException {
+				Scanner mod = new Scanner(System.in);
 				int opcion = 0;
-				Scanner visE = new Scanner(System.in);
 				
-				System.out.println("<----------VISUALIZAR EMPLEADOS---------->");
-				Visualizacion v = new Visualizacion();
-				v.readFileEmpleados(pathEmpleados);
+				System.out.println("\n\n<----------MODIFICAR EMPLEADO---------->\n");
 				
-				System.out.println("1. Men˙ de Administrador");
-				opcion = visE.nextInt();
-				if(opcion == 1) {
-					opcion = menuA(sc);
-				}
-			}
+				Modificacion.editRecordEmp();
+				opcion = admEmpleados(sc);
+				
+		}
 			
 		
 			
@@ -355,27 +337,28 @@ public static void main(String[] args) throws IOException {
 			boolean logeado = true;
 			
 			String usuarioC;
-			String contraseÒaC;
+			String passwordC;
 			
 			int opcion = 0;
 			Scanner cliente = new Scanner(System.in);
 			
-			System.out.println("<---------------------LOGIN CLIENTE------------------------->");
+			System.out.println("\n\n<----------LOGIN CLIENTE---------->");
 			System.out.println("Ingrese su usuario:");
 			usuarioC = cliente.nextLine();
 			System.out.println("Ingrese su contraseÒa:");
-			contraseÒaC = cliente.nextLine();
+			passwordC = cliente.nextLine();
 			
 			//CREO UN NUEVO LECTOR CSV
 			LoginCSV lec = new LoginCSV();
 			
 			//COMPARO VALORES INGRESADOS CON LOS DEL ARCHIVO CSV -> USO CLASE LOGINCSV
-			logeado = lec.readFileA(pathC, usuarioC, contraseÒaC);
+			logeado = lec.readFileA(pathC, usuarioC, passwordC);
+			logedUser = usuarioC; //guarda el usuario logeado
 			
 			if(logeado == true) {
 				menuCliente(sc);
 			}else {
-				System.out.println("Login Incorrecto");
+				System.out.println("Login Incorrecto - Los datos no coinciden");
 				System.out.println("1. Volver a intentar");
 				System.out.println("2. Atr·s");
 				opcion = cliente.nextInt();
@@ -388,49 +371,31 @@ public static void main(String[] args) throws IOException {
 			return logeado;
 		}
 	
-		
+		//MEN⁄ CLIENTE
 		public static int menuCliente(Scanner sc) throws IOException {
 			Scanner mec = new Scanner(System.in);
 			int opcion = 0;
+			System.out.println("\n\n<----------MEN⁄ CLIENTE---------->\n");
 			
-			System.out.println("1. Visualizar Actividades del Gimnasio");
-			System.out.println("2. Apuntarse a una actividad");
-			//System.out.println("3. Visualizar mi horario");
-			System.out.println("4. Salir");
+			System.out.println("\n<----------MI HORARIO---------->\n");
+			Visualizacion v = new Visualizacion();
+			v.readFileClientesActividades(pathClientesActividades, logedUser);
+			
+			System.out.println("1. Apuntarse a una actividad");
+			System.out.println("2. Salir");
 			opcion = mec.nextInt();
+			
 			switch (opcion) {
 			case 1:
-				visActividadesC(sc);
-				break;
-			case 2:
 				apActividad(sc);
 				break;
-			/*case 3:
-				visHorario(sc);
-				break;*/
-			case 4:
+			case 2:
 				menuPrincipal(sc);
 				break;
 			}
 			return opcion;
 		}
-	
-	
-	
-		//VISUALIZAR ACTIVIDADES COMO CLIENTE
-		public static void visActividadesC(Scanner sc) throws IOException {
-			Scanner visAC = new Scanner(System.in);
-			int opcion = 0;
-			System.out.println("<----------VISUALIZAR ACTIVIDADES---------->");
-			Visualizacion v = new Visualizacion();
-			v.readFileActividades(pathActividades);
-			
-			System.out.println("1. Men˙ de cliente");
-			opcion = visAC.nextInt();
-			if(opcion == 1) {
-				opcion = menuCliente(sc);
-			}
-		}
+		
 		
 		//APUNTARSE A ACTIVIDADES
 				public static boolean apActividad(Scanner sc) throws IOException {
@@ -441,7 +406,9 @@ public static void main(String[] args) throws IOException {
 					Scanner apa = new Scanner(System.in);
 					int opcion = 0;
 					
-					System.out.println("<----------APUNTARSE A ACTIVIDADES---------->");
+					System.out.println("\n\n<----------APUNTARSE A ACTIVIDADES---------->");
+					Visualizacion v = new Visualizacion();
+					v.readFileActividades(pathActividades);
 					
 					String fecha;
 					String hora;
@@ -449,13 +416,12 @@ public static void main(String[] args) throws IOException {
 					String idSala;
 					
 					//PEDIDA DE ID de la actividad
-					System.out.println("Ingrese ID de la actividad: ");
+					System.out.println("Ingrese el ID de la actividad a la que quiere apuntarse: ");
 					idAct = apa.nextLine();
-					System.out.println("Por favor, para confirmar los datos de la actividad a la que quiere apuntarse, "
-							+ "introduzca la siguiente informaciÛn\n");
-					System.out.println("Ingrese la fecha de la actividad: ");
+					System.out.println("Por favor, confirme los siguientes datos sobre la actividad " + idAct);
+					System.out.println("Ingrese la fecha de la actividad:     (dd/mm/yyyy)");
 					fecha = apa.nextLine();
-					System.out.println("Ingrese la hora de la actividad: ");
+					System.out.println("Ingrese la hora de la actividad:     (hh:mm)");
 					hora = apa.nextLine();
 					System.out.println("Ingrese el ID de la sala de la actividad: ");
 					idSala = apa.nextLine();
@@ -466,19 +432,11 @@ public static void main(String[] args) throws IOException {
 					//Comparar valores ingresados con los del archivo csv -> se usa clase LoginCSV
 					checked = lec.readFileAct(pathActividades, idAct, fecha, hora, idSala);
 					
-					//Si coinciden usuario y contraseÒa
+					//Si coinciden los datos
 					if(checked == true) {
-						int[] lista = new int[200]; // Lista de n˙meros enteros que supondremos llena.
-						int acumulador = 0; // Declaramos e inicializamos el acumulaador.
-						for (int i = 0; i < 100; i++)
-							acumulador += lista[i]; // Incrementamos el acumulador
-
-						System.out.print("Se ha registrado con Èxito en la actividad " + idAct + "\n");
-						System.out.println("1. Men˙ principal");
-						opcion = apa.nextInt();
-						if(opcion == 1) {
-							opcion = menuPrincipal(sc);
-						}
+						Registro.RegClientesAct(idAct, idSala, fecha, hora, logedUser, pathClientesActividades);
+						menuCliente(sc);
+						
 					}else {
 						//Si no coinciden, se puede volver a intentar o ir atr·s
 						System.out.println("Datos incorrectos");
@@ -495,9 +453,6 @@ public static void main(String[] args) throws IOException {
 				}
 				
 					
-					//Crear una nueva actividad en "mi horario"
-					//miHorario.add(new Horario(fecha, hora, idActividad, nombreAct));
-					
 									
 						
 //VISUALIZAR - REGISTRO DE CLIENTES
@@ -506,7 +461,7 @@ public static void main(String[] args) throws IOException {
 	public static void visActividadesE(Scanner sc) throws IOException {
 		Scanner visA = new Scanner(System.in);
 		int opcion = 0;
-		System.out.println("<----------VISUALIZAR ACTIVIDADES---------->");
+		System.out.println("\n\n<----------VISUALIZAR ACTIVIDADES---------->");
 		Visualizacion v = new Visualizacion();
 		v.readFileActividades(pathActividades);
 
@@ -514,15 +469,15 @@ public static void main(String[] args) throws IOException {
 		System.out.println("1. Registrarse/MembresÌa");
 		System.out.println("2. Atr·s");
 		opcion = visA.nextInt();
-		if(opcion == 2) {
+		if(opcion == 1) {
+			opcion = registro(sc);
+		}else if (opcion == 2){
 			opcion = menuPrincipal(sc);
-		}else {
-			registro(sc);
 		}
 	}
 	
 	//REGISTRO DE NUEVO CLIENTE PARA MEMBRESÕA
-		public static void registro(Scanner sc) throws IOException {
+		public static int registro(Scanner sc) throws IOException {
 			Scanner reg = new Scanner(System.in);
 			boolean sesion = false;
 			
@@ -536,6 +491,7 @@ public static void main(String[] args) throws IOException {
 			
 			
 			//PEDIDA DE DATOS
+			System.out.println("\n\n<----------REGISTRO MEMBRESÕA---------->");
 			System.out.println("Ingrese usuario:");
 			usuario = reg.nextLine();
 			System.out.println("Ingrese contraseÒa:");
@@ -554,12 +510,13 @@ public static void main(String[] args) throws IOException {
 			//CREO UN NUEVO CLIENTE
 			clientes.add(new Cliente(usuario, contrasena, Nombre, Apellido, fnac, correo, tarjeta));
 			
-			//INGRESO EL CLIENTE EN EL CSV -> USO CLASE Registro
+			//INGRESO EL CLIENTE EN EL CSV -> USO CLASE REGISTRO
 			Registro.RegClientes(clientes, pathC);
 			
-			System.out.print("Usuario registrado con exito");
+			System.out.print("Usuario registrado con Èxito\n");
 			
 			//ME DIRIJO AL INICIO DE SESI”N DEL USUARIO
-			sesion = loginCliente(sc);			
+			sesion = loginCliente(sc);
+			return 0;			
 		}
 }

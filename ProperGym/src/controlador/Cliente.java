@@ -1,4 +1,5 @@
 package controlador;
+
 public class Cliente {
 	
 	private String usuario;
@@ -11,13 +12,14 @@ public class Cliente {
 	
 	
 	
-	public Cliente(String usuario, String contra, String nombre, String apellido, String fecha, String correo, String tarjeta) {
+	public Cliente(String usuario, String contra, String nombre, String apellido, String fnac, String correo, String tarjeta) {
 		this.usuario = usuario;
 		this.contra = contra;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fnac = fnac;
 		this.correo = correo;
+		this.tarjeta = tarjeta;
 	}
 	
 	public String [] getArray() {
