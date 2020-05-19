@@ -14,7 +14,7 @@ public class Modificacion {
 	public static void eliminarFichero(File fichero, File fichero2) {
 
 	    if (!fichero.exists()) {
-	        System.out.println("El archivo data no existe.");
+	        System.out.println("El archivos data no existe.");
 	    } else {
 	        fichero.delete();
 	        fichero2.renameTo(fichero);
