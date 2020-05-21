@@ -283,11 +283,22 @@ public static void main(String[] args) throws IOException {
 			return opcion;
 		}
 		
+		//ELIMINAR EMPLEADO
 		
-		private static void elimEmpleados(Scanner sc) {
-			// TODO Auto-generated method stub
+				public static void elimEmpleados(Scanner sc) throws IOException {
+					Scanner mod = new Scanner(System.in);
+					int opcion = 0;
+					
+					System.out.println("\n\n<----------ELIMINAR EMPLEADO---------->\n");
+					
+					Modificacion.deleteRecordEmp();
+					opcion = admEmpleados(sc);
+					
+				
+				}
+		
 			
-		}
+		
 
 		
 			//CREAR UN NUEVO EMPLEADO
@@ -326,6 +337,7 @@ public static void main(String[] args) throws IOException {
 				opcion = admEmpleados(sc);
 				
 		}
+	
 			
 		
 			
