@@ -37,10 +37,10 @@ public static void main(String[] args) throws IOException {
 //MEN⁄ PRINCIPAL
 	public static int menuPrincipal(Scanner sc) throws IOException {
 		System.out.println("\n\n<-------------------BIENVENIDO A PROPERGYM--------------------->");
-		System.out.println("Digite el n˙mero de su elecciÛn:");
+		System.out.println("Digite el número de su elección:");
 		System.out.println("1. Administrador");
 		System.out.println("2. Cliente");
-		System.out.println("3. Visualizar Actividades - Registro membresÌa");
+		System.out.println("3. Visualizar Actividades - Registro membresía");
 		//System.out.println("4. ProperGym - InformaciÛn");
 		
 		//ELEGIMOS OPCI”N DEL MEN⁄
@@ -149,10 +149,10 @@ public static void main(String[] args) throws IOException {
 				Visualizacion v = new Visualizacion();
 				v.readFileActividades(pathActividades);
 				
-				System.out.println("\n1. AÒadir Actividad");
+				System.out.println("\n1. Añadir Actividad");
 				System.out.println("2. Modificar Actividad");
 				System.out.println("3. Eliminar Actividad");
-				System.out.println("4. Atr·s");
+				System.out.println("4. Atrás");
 				
 				opcion = admA.nextInt();
 				
@@ -263,7 +263,7 @@ public static void main(String[] args) throws IOException {
 			System.out.println("1. Agregar empleados");
 			System.out.println("2. Modificar datos de empleados");
 			System.out.println("3. Eliminar empleados");
-			System.out.println("4. Atr·s");
+			System.out.println("4. Atrás");
 			
 			opcion = adm.nextInt();
 			switch (opcion) {
@@ -345,7 +345,7 @@ public static void main(String[] args) throws IOException {
 			System.out.println("\n\n<----------LOGIN CLIENTE---------->");
 			System.out.println("Ingrese su usuario:");
 			usuarioC = cliente.nextLine();
-			System.out.println("Ingrese su contraseÒa:");
+			System.out.println("Ingrese su contraseña:");
 			passwordC = cliente.nextLine();
 			
 			//CREO UN NUEVO LECTOR CSV
@@ -360,7 +360,7 @@ public static void main(String[] args) throws IOException {
 			}else {
 				System.out.println("Login Incorrecto - Los datos no coinciden");
 				System.out.println("1. Volver a intentar");
-				System.out.println("2. Atr·s");
+				System.out.println("2. Atrás");
 				opcion = cliente.nextInt();
 				if(opcion == 1) {
 					logeado=loginCliente(sc);
@@ -465,9 +465,9 @@ public static void main(String[] args) throws IOException {
 		Visualizacion v = new Visualizacion();
 		v.readFileActividades(pathActividades);
 
-		System.out.println("Digite el n˙mero de su elecciÛn:");
+		System.out.println("Digite el número de su elecciÛn:");
 		System.out.println("1. Registrarse/MembresÌa");
-		System.out.println("2. Atr·s");
+		System.out.println("2. Atrás");
 		opcion = visA.nextInt();
 		if(opcion == 1) {
 			opcion = registro(sc);
@@ -494,7 +494,7 @@ public static void main(String[] args) throws IOException {
 			System.out.println("\n\n<----------REGISTRO MEMBRESÕA---------->");
 			System.out.println("Ingrese usuario:");
 			usuario = reg.nextLine();
-			System.out.println("Ingrese contraseÒa:");
+			System.out.println("Ingrese contraseña:");
 			contrasena = reg.nextLine();
 			System.out.println("Ingrese Primer Nombre:");
 			Nombre = reg.nextLine();
@@ -502,9 +502,9 @@ public static void main(String[] args) throws IOException {
 			Apellido = reg.nextLine();
 			System.out.println("Ingrese Fecha de Nacimiento:");
 			fnac = reg.nextLine();
-			System.out.println("Ingrese Correo ElectrÛnico:");
+			System.out.println("Ingrese Correo Electrónico:");
 			correo = reg.nextLine();
-			System.out.println("Ingrese el n˙mero de su tarjeta de crÈdito:");
+			System.out.println("Ingrese el número de su tarjeta de crédito:");
 			tarjeta = reg.nextLine();
 			
 			//CREO UN NUEVO CLIENTE
