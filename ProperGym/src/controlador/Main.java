@@ -375,7 +375,7 @@ public static void main(String[] args) throws IOException {
 		public static int menuCliente(Scanner sc) throws IOException {
 			Scanner mec = new Scanner(System.in);
 			int opcion = 0;
-			System.out.println("\n\n<----------MEN⁄ CLIENTE---------->\n");
+			System.out.println("\n\n<----------MENÚ⁄ CLIENTE---------->\n");
 			
 			System.out.println("\n<----------MI HORARIO---------->\n");
 			Visualizacion v = new Visualizacion();
