@@ -1,5 +1,6 @@
 package controlador;
 
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,10 +15,17 @@ public void readFileEmpleados(String path) {
 		
 		try {
 			buff = new BufferedReader(new FileReader(path));
+			
+			System.out.println(" -----------------------------------------------");
+			System.out.println("|                  ENTRENADORES                 |");
+			System.out.println(" -----------------------------------------------");
+	    	System.out.println("|   ID       Nombre          Apellidos          |");
+	    	System.out.println(" -----------------------------------------------");
 			while ((line = buff.readLine()) != null) {
 				String[] fileE = line.split(delimiter);
-				System.out.println("Empleado ID: " + fileE[2] + " Nombre: " + fileE[0] + " Apellidos: " + fileE[1]);
+				System.out.println("|   "+fileE[2]+"       "+fileE[0]+"        "+ fileE[1] +"         ");
 			}
+			System.out.println(" --------------------------------------------------");
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
 		}catch (Exception e) {
@@ -34,6 +42,8 @@ public void readFileActividades(String path) {
 	try {
 		buff = new BufferedReader(new FileReader(path));
 		System.out.println(" -------------------------------------------------------------------------------------------------------------------");
+    	System.out.println("|	                                      ACTIVIDADES                                                           |");
+		System.out.println(" -------------------------------------------------------------------------------------------------------------------");
     	System.out.println("|	ID	     Fecha	     Hora	    Sala     Nombre	    Empleado	Capacidad Aforo   Plaza     |");
     	System.out.println(" -------------------------------------------------------------------------------------------------------------------");
 		while ((line = buff.readLine()) != null) {
@@ -41,6 +51,7 @@ public void readFileActividades(String path) {
 			
 			System.out.println("|	"+ fileAct[1] +"	     "+ fileAct[5] +"	     "+ fileAct[6] +"	     "+ fileAct[2] + "	     "+ fileAct[0] +"	     "+ fileAct[4] + "	     "+ fileAct[3] +"	     "+ fileAct[7] + "	     "+ fileAct[8] + "      |");			
 		}
+		System.out.println("|-------------------------------------------------------------------------------------------------------------------|");
 	}catch(FileNotFoundException e){
 		e.printStackTrace();
 	}catch (Exception e) {
@@ -56,13 +67,17 @@ public void readFileClientesActividades(String path, String username) {
 	
 	try {
 		buff = new BufferedReader(new FileReader(path));
+		System.out.println(" ------------------------------------------------------------");
+    	System.out.println("|	ID	     Fecha	     Hora	    Sala     |");
+    	System.out.println(" ------------------------------------------------------------");
 		while ((line = buff.readLine()) != null) {
 			String[] fileCA = line.split(delimiter);
 			if (fileCA[0].equals(username)) {
-			System.out.println("ID: " + fileCA[1] + " - Fecha: " + fileCA[3] + " - Hora: " + fileCA[4] + 
-			" - Sala: " + fileCA[2] + "\n");
+			System.out.println("|	"+fileCA[1] + "	     " + fileCA[3] + "	     " + fileCA[4] + 
+			"	     " + fileCA[2] + "      |");
 			}
 		}
+		System.out.println("|-------------------------------------------------------------|");
 	}catch(FileNotFoundException e){
 		e.printStackTrace();
 	}catch (Exception e) {
