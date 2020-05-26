@@ -48,6 +48,7 @@ public boolean readFileAct(String path, String idAct, String fecha, String hora,
 		String line;
 		String delimiter = ",";
 		ArrayList<String[]> newLines = new ArrayList<String[]>(); // lista de arrays tipo String
+		boolean hayplazas = false;
 		
 		try {
 			buffA = new BufferedReader(new FileReader(path));
@@ -60,6 +61,7 @@ public boolean readFileAct(String path, String idAct, String fecha, String hora,
 					int capacidadSala = Integer.parseInt(file[7]);
 					if (participantes < capacidadSala) {
 						file[8] = Integer.toString(participantes + 1); 
+						hayplazas = true;
 						
 						System.out.print("Datos correctos\n");
 						System.out.print("Se ha registrado con Èxito en la actividad " + idAct + "\n");
@@ -76,19 +78,26 @@ public boolean readFileAct(String path, String idAct, String fecha, String hora,
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		if (check == true) {
 		try {
-			CsvWriter writer = new CsvWriter(new FileWriter(path, false), ',');
-			for(String[] newLine : newLines) {
-				for (String f: newLine) { // se aÒade palabra a palabra
-					writer.write(f);
+			
+				CsvWriter writer = new CsvWriter(new FileWriter(path, false), ',');
+				for(String[] newLine : newLines) {
+					for (String f: newLine) { // se aÒade palabra a palabra
+						writer.write(f);
+					}
+					writer.endRecord();
 				}
-				writer.endRecord();
-			}
-			writer.close();
+				writer.close();
+			
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		return check;
+		}
+		
+		
+		return hayplazas;
 	}
 
 

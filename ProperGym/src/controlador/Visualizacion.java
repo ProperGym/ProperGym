@@ -84,4 +84,32 @@ public void readFileClientesActividades(String path, String username) {
 		e.printStackTrace();
 	}
 	}
+
+public void informeActividades(String path, String username) {
+	
+	BufferedReader buff = null;
+	String line;
+	String delimiter = ","; //formato csv por comas
+	
+	try {
+		buff = new BufferedReader(new FileReader(path));
+		System.out.println(" ------------------------------------------------------------");
+    	System.out.println("|	ID	     Fecha	     Hora	    Sala     |");
+    	System.out.println(" ------------------------------------------------------------");
+		while ((line = buff.readLine()) != null) {
+			String[] fileCA = line.split(delimiter);
+			if (fileCA[0].equals(username)) {
+			System.out.println("|	"+fileCA[1] + "	     " + fileCA[3] + "	     " + fileCA[4] + 
+			"	     " + fileCA[2] + "      |");
+			}
+		}
+		System.out.println("|-------------------------------------------------------------|");
+	}catch(FileNotFoundException e){
+		e.printStackTrace();
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+	}
 }
+
+
