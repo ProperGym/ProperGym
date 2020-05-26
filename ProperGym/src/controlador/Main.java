@@ -56,13 +56,13 @@ public static void main(String[] args) throws IOException, MessagingException {
 	public static int menuPrincipal(Scanner sc) throws IOException, MessagingException {
 		System.out.println("\n\n		<-------------------BIENVENIDO A PROPERGYM--------------------->");
 		System.out.println(" ___________________________________________________");
-		System.out.println("|          Digite el n˙mero de su elecciÛn          |");
+		System.out.println("|          Digite el número de su elección          |");
 		System.out.println(" ---------------------------------------------------");
 		System.out.println("|  1. Administrador                                 |");
 		System.out.println(" ---------------------------------------------------");
 		System.out.println("|  2. Cliente                                       |");
 		System.out.println(" ---------------------------------------------------");
-		System.out.println("|  3. Visualizar Actividades/Registro membresÌa     |");
+		System.out.println("|  3. Visualizar Actividades/Registro membresía     |");
 		System.out.println("|___________________________________________________|");
 		//System.out.println("4. ProperGym - InformaciÛn");
 		
@@ -113,7 +113,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			System.out.println("---------------------");
 			System.out.println("INGRESAR USUARIO");
 			usuarioA = admi.nextLine();
-			System.out.println("INGRESAR CONTRASE—A");
+			System.out.println("INGRESAR CONTRASEÑA");
 			passwordA = admi.nextLine();
 			
 			//crear un nuevo lector csv
@@ -130,7 +130,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 				//Si no coinciden, se puede volver a intentar o ir atr·s
 				System.out.println("LOGIN INCORRECTO");
 				System.out.println("1. Volver a intentar");
-				System.out.println("2. Atr·s");
+				System.out.println("2. Atrás");
 				opcion = admi.nextInt();
 				if(opcion == 1) {
 					logeado=loginAdministrador(sc);
@@ -187,7 +187,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			System.out.println(" ---------------------------------------------------");
 			System.out.println("|  Enviar por correo                             |");
 			System.out.println(" ---------------------------------------------------");
-			System.out.print("Se generaron los informes y se enviar· a la cuenta determinada");
+			System.out.print("Se generaron los informes y se enviará a la cuenta determinada");
 
 			Properties propiedad = new Properties();
 	        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
@@ -240,10 +240,10 @@ public static void main(String[] args) throws IOException, MessagingException {
 				Visualizacion v = new Visualizacion();
 				v.readFileActividades(pathActividades);
 				
-				System.out.println("\n1. AÒadir Actividad");
+				System.out.println("\n1. Añadir Actividad");
 				System.out.println("2. Modificar Actividad");
 				System.out.println("3. Eliminar Actividad");
-				System.out.println("4. Atr·s");
+				System.out.println("4. Atrás");
 				
 				opcion = admA.nextInt();
 				
@@ -329,7 +329,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 				//INGRESO EL CLIENTE EN EL CSV -> USO CLASE REGCLIENTE
 				Registro.RegActividades(actividades, pathActividades);
 				
-				System.out.print("Actividad " + idAct + " registrada con Èxito.\n");
+				System.out.print("Actividad " + idAct + " registrada con éxito.\n");
 				opcion = admActividades(sc);
 		}
 		
@@ -358,7 +358,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			System.out.println("1. Agregar empleados");
 			System.out.println("2. Modificar datos de empleados");
 			System.out.println("3. Eliminar empleados");
-			System.out.println("4. Atr·s");
+			System.out.println("4. Atrás");
 			
 			opcion = adm.nextInt();
 			switch (opcion) {
@@ -416,7 +416,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 				//INGRESO EL EMPLEADO EN EL CSV -> USO CLASE REGISTROS
 				Registro.RegEmpleados(empleados, pathEmpleados);
 				
-				System.out.print("Empleado registrado con Èxito");
+				System.out.print("Empleado registrado con éxito");
 		}
 			
 			//MODIFICAR EMPLEADO
@@ -453,7 +453,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			System.out.println("--------------------");
 			System.out.println("Ingrese su usuario:");
 			usuarioC = cliente.nextLine();
-			System.out.println("Ingrese su contraseÒa:");
+			System.out.println("Ingrese su contraseña:");
 			passwordC = cliente.nextLine();
 			
 			//CREO UN NUEVO LECTOR CSV
@@ -468,7 +468,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			}else {
 				System.out.println("\nLogin Incorrecto - Los datos no coinciden");
 				System.out.println("1. Volver a intentar");
-				System.out.println("2. Atr·s");
+				System.out.println("2. Atrás");
 				opcion = cliente.nextInt();
 				if(opcion == 1) {
 					logeado=loginCliente(sc);
@@ -552,7 +552,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 						//Si no coinciden, se puede volver a intentar o ir atr·s
 						System.out.println("\nDatos incorrectos");
 						System.out.println("1. Volver a intentar");
-						System.out.println("2. Atr·s");
+						System.out.println("2. Atrás");
 						opcion = apa.nextInt();
 						if(opcion == 1) {
 							checked=apActividad(sc);
@@ -575,9 +575,9 @@ public static void main(String[] args) throws IOException, MessagingException {
 		Visualizacion v = new Visualizacion();
 		v.readFileActividades(pathActividades);
 
-		System.out.println("\nDigite el n˙mero de su elecciÛn:");
+		System.out.println("\nDigite el número de su elección:");
 		System.out.println("1. Registrarse/MembresÌa");
-		System.out.println("2. Atr·s");
+		System.out.println("2. Atrás");
 		opcion = visA.nextInt();
 		if(opcion == 1) {
 			opcion = registro(sc);
@@ -606,7 +606,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			System.out.println("--------------------");
 			System.out.println("Ingrese usuario:");
 			usuario = reg.nextLine();
-			System.out.println("Ingrese contraseÒa:");
+			System.out.println("Ingrese contraseña:");
 			contrasena = reg.nextLine();
 			System.out.println("Ingrese Primer Nombre:");
 			Nombre = reg.nextLine();
@@ -614,9 +614,9 @@ public static void main(String[] args) throws IOException, MessagingException {
 			Apellido = reg.nextLine();
 			System.out.println("Ingrese Fecha de Nacimiento:");
 			fnac = reg.nextLine();
-			System.out.println("Ingrese Correo ElectrÛnico:");
+			System.out.println("Ingrese Correo Electrónico:");
 			correo = reg.nextLine();
-			System.out.println("Ingrese el n˙mero de su tarjeta de crÈdito:");
+			System.out.println("Ingrese el número de su tarjeta de crédito:");
 			tarjeta = reg.nextLine();
 			
 			//CREO UN NUEVO CLIENTE
@@ -625,7 +625,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			//INGRESO EL CLIENTE EN EL CSV -> USO CLASE REGISTRO
 			Registro.RegClientes(clientes, pathC);
 			
-			System.out.print("Usuario registrado con Èxito\n");
+			System.out.print("Usuario registrado con éxito\n");
 			
 			//ME DIRIJO AL INICIO DE SESI”N DEL USUARIO
 			sesion = loginCliente(sc);

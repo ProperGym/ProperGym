@@ -64,7 +64,7 @@ public boolean readFileAct(String path, String idAct, String fecha, String hora,
 						hayplazas = true;
 						
 						System.out.print("Datos correctos\n");
-						System.out.print("Se ha registrado con Èxito en la actividad " + idAct + "\n");
+						System.out.print("Se ha registrado con éxito en la actividad " + idAct + "\n");
 					}
 					else {
 						System.out.print("Datos correctos. \nLamentablemente, no quedan plazas disponibles \n");
