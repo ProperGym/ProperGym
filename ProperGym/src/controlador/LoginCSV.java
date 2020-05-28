@@ -70,6 +70,7 @@ public boolean readFileAct(String path, String idAct, String fecha, String hora,
 						System.out.print("Datos correctos. \nLamentablemente, no quedan plazas disponibles \n");
 					}
 				}
+				
 				newLines.add(file);
 			}
 
@@ -80,29 +81,22 @@ public boolean readFileAct(String path, String idAct, String fecha, String hora,
 		}
 		
 		if (check == true) {
-		try {
+			try {
 			
 				CsvWriter writer = new CsvWriter(new FileWriter(path, false), ',');
 				for(String[] newLine : newLines) {
-					for (String f: newLine) { // se aÒade palabra a palabra
+					for (String f: newLine) { // se añade palabra a palabra
 						writer.write(f);
 					}
 					writer.endRecord();
 				}
 				writer.close();
-			
+				
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
 		}
-		
-		
 		return hayplazas;
-	}
-
-
-//MODIFICACI”N DE ACTIVIDADES
-public void actualizarAct() {
-	
 }
+
 }

@@ -145,7 +145,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 		public static int menuA(Scanner sc) throws IOException, MessagingException {
 			Scanner vis = new Scanner(System.in);
 			int opcion = 0;
-			System.out.println(" ___________________________________________________");
+			System.out.println(" _________________");
 			System.out.println("|                 MENU ADMINISTRADOR                |");
 			System.out.println(" ---------------------------------------------------");
 			System.out.println("|  1. Administrar Actividades                       |");
@@ -155,7 +155,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			System.out.println("|  3. Generar Informes                              |");
 			System.out.println(" ---------------------------------------------------");
 			System.out.println("|  4. Salir                                         |");
-			System.out.println("____________________________________________________");
+			System.out.println("__________________");
 			opcion = vis.nextInt();
 			switch (opcion) {
 			case 1:
@@ -178,7 +178,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 		private static int menuCSVl(Scanner sc) throws IOException, MessagingException {
 			Scanner vis = new Scanner(System.in);
 			int opcion = 0;
-			System.out.println(" ___________________________________________________");
+			System.out.println(" _________________");
 			System.out.println("|                 Informes                          |");
 			System.out.println(" ---------------------------------------------------");
 			System.out.println("|  Actividades                                   |");
@@ -194,9 +194,9 @@ public static void main(String[] args) throws IOException, MessagingException {
 	        propiedad.setProperty("mail.smtp.starttls.enable", "true");
 	        propiedad.setProperty("mail.smtp.port", "587");
 	        Session sesion = Session.getDefaultInstance(propiedad);
-	        String correoEnvia = "jazminsoria191998@gmail.com";
-	        String contrasena = "6Br#0Yes";
-	        String receptor = "jazminsoria191998@gmail.com";
+	        String correoEnvia = "danicruba67@gmail.com";
+	        String contrasena = "nonita1*";
+	        String receptor = "danicruba67@gmail.com";
 	        String asunto = "Prueba Proyecto Ingenieria";
 	        String mensaje= "Prueba txt";
 	        
@@ -266,18 +266,29 @@ public static void main(String[] args) throws IOException, MessagingException {
 			}
 			
 	
-		//ELIMINAR ACTIVIDADES
-		private static void elimActividad(Scanner sc) throws IOException, MessagingException {
-			Scanner mod = new Scanner(System.in);
-			int opcion = 0;
-			System.out.println("\n--------------------");
-			System.out.println("ELIMINAR ACTIVIDAD\n");
-			System.out.println("--------------------");
-			
-			Modificacion.deleteRecordAct();
-			opcion = admActividades(sc);
-			
-		}
+			//ELIMINAR ACTIVIDADES
+			private static void elimActividad(Scanner sc) throws IOException, MessagingException {
+				Scanner mod = new Scanner(System.in);
+				int opcion = 0;
+				System.out.println("\n--------------------");
+				System.out.println("ELIMINAR ACTIVIDAD\n");
+				System.out.println("--------------------");
+				
+				Modificacion.deleteRecordAct();
+				opcion = admActividades(sc);
+				System.out.println("\n1. Administrar Actividades");
+				System.out.println("2. Menú de administrador");
+				System.out.println("3. Salir");
+				opcion = mod.nextInt();
+				if(opcion == 1) {
+					opcion = admActividades(sc);
+				}else if(opcion == 2) {
+					opcion = menuA(sc);
+				}else if(opcion == 3) {
+					opcion = menuPrincipal(sc);
+				}
+				
+			}
 
 		//AGREGAR ACTIVIDADES
 		private static void agregarAct(Scanner sc) throws IOException, MessagingException {
@@ -310,7 +321,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 				agAct.nextLine(); //separaciÛn despuÈs de nextInt
 				System.out.println("Ingrese ID del entrenador:");
 				idEmpleado = agAct.nextLine();
-				System.out.println("Ingrese fecha de la actividad:");
+				System.out.println("Ingrese dÌa de la actividad:");
 				fecha = agAct.nextLine();
 				System.out.println("Ingrese hora de la actividad:     (hh:mm)");
 				hora = agAct.nextLine();
@@ -334,18 +345,29 @@ public static void main(String[] args) throws IOException, MessagingException {
 		}
 		
 		//MODIFICAR ACTIVIDADES
-				private static void modActividad(Scanner sc) throws IOException, MessagingException {
-					Scanner mod = new Scanner(System.in);
-					int opcion = 0;
-					System.out.println("\n--------------------");
-					System.out.println("MODIFICAR ACTIVIDAD");
-					System.out.println("--------------------");
-					
-					
-					Modificacion.editRecordAct();
-					opcion = admActividades(sc);
-								
-				}
+		private static void modActividad(Scanner sc) throws IOException, MessagingException {
+			Scanner mod = new Scanner(System.in);
+			int opcion = 0;
+			System.out.println("\n--------------------");
+			System.out.println("MODIFICAR ACTIVIDAD");
+			System.out.println("--------------------");
+			
+			
+			Modificacion.editRecordAct();
+			opcion = admActividades(sc);
+			System.out.println("\n1. Administrar Actividades");
+			System.out.println("2. Menú de administrador");
+			System.out.println("3. Salir");
+			opcion = mod.nextInt();
+			if(opcion == 1) {
+				opcion = admActividades(sc);
+			}else if(opcion == 2) {
+				opcion = menuA(sc);
+			}else if(opcion == 3) {
+				opcion = menuPrincipal(sc);
+			}
+						
+		}
 				
 					
 		//ADMINISTRAR ENTRENADORES
@@ -390,13 +412,25 @@ public static void main(String[] args) throws IOException, MessagingException {
 			
 			Modificacion.deleteRecordEmp();
 			opcion = admEmpleados(sc);
+			System.out.println("\n1. Administrar Empleados");
+			System.out.println("2. Menú de administrador");
+			System.out.println("3. Salir");
+			opcion = mod.nextInt();
+			if(opcion == 1) {
+				opcion = admEmpleados(sc);
+			}else if(opcion == 2) {
+				opcion = menuA(sc);
+			}else if(opcion == 3) {
+				opcion = menuPrincipal(sc);
+			}
 			
 		}
 
 		
 			//CREAR UN NUEVO EMPLEADO
-		public static void regEmpleados(Scanner sc) throws IOException {
+		public static void regEmpleados(Scanner sc) throws IOException, MessagingException {
 			Scanner emp = new Scanner(System.in);
+			int opcion = 0;
 			
 				String nombre;
 				String apellidos;
@@ -417,9 +451,20 @@ public static void main(String[] args) throws IOException, MessagingException {
 				Registro.RegEmpleados(empleados, pathEmpleados);
 				
 				System.out.print("Empleado registrado con éxito");
+				System.out.println("\n1. Administrar Empleados");
+				System.out.println("2. Menú de administrador");
+				System.out.println("3. Salir");
+				opcion = emp.nextInt();
+				if(opcion == 1) {
+					opcion = admEmpleados(sc);
+				}else if(opcion == 2) {
+					opcion = menuA(sc);
+				}else if(opcion == 3) {
+					opcion = menuPrincipal(sc);
+				}
 		}
 			
-			//MODIFICAR EMPLEADO
+		//MODIFICAR EMPLEADO
 		public static void modEmpleados(Scanner sc) throws IOException, MessagingException {
 				Scanner mod = new Scanner(System.in);
 				int opcion = 0;
@@ -430,6 +475,18 @@ public static void main(String[] args) throws IOException, MessagingException {
 				
 				Modificacion.editRecordEmp();
 				opcion = admEmpleados(sc);
+				
+				System.out.println("\n1. Administrar Empleados");
+				System.out.println("2. Menú de administrador");
+				System.out.println("3. Salir");
+				opcion = mod.nextInt();
+				if(opcion == 1) {
+					opcion = admEmpleados(sc);
+				}else if(opcion == 2) {
+					opcion = menuA(sc);
+				}else if(opcion == 3) {
+					opcion = menuPrincipal(sc);
+				}
 				
 		}
 			
@@ -507,63 +564,62 @@ public static void main(String[] args) throws IOException, MessagingException {
 		
 		
 		//APUNTARSE A ACTIVIDADES
-				public static boolean apActividad(Scanner sc) throws IOException, MessagingException {
-					
-					//Variable para comprobar si los datos coinciden
-					boolean checked = true;
-					
-					Scanner apa = new Scanner(System.in);
-					int opcion = 0;
-					
-					System.out.println("\n--------------------");
-					System.out.println("APUNTARSE A ACTIVIDAD");
-					System.out.println("--------------------\n");
-					Visualizacion v = new Visualizacion();
-					v.readFileActividades(pathActividades);
-					
-					String fecha;
-					String hora;
-					String idAct;
-					String idSala;
-					
-					//PEDIDA DE ID de la actividad
-					System.out.println("Ingrese el ID de la actividad a la que quiere apuntarse: ");
-					idAct = apa.nextLine();
-					System.out.println("Por favor, confirme los siguientes datos sobre la actividad " + idAct);
-					System.out.println("Ingrese la fecha de la actividad:     (dd/mm/yyyy)");
-					fecha = apa.nextLine();
-					System.out.println("Ingrese la hora de la actividad:     (hh:mm)");
-					hora = apa.nextLine();
-					System.out.println("Ingrese el ID de la sala de la actividad: ");
-					idSala = apa.nextLine();
-					
-					//crear un nuevo lector csv
-					LoginCSV lec = new LoginCSV();
-					
-					//Comparar valores ingresados con los del archivo csv -> se usa clase LoginCSV
-					checked = lec.readFileAct(pathActividades, idAct, fecha, hora, idSala);
-					
-					//Si coinciden los datos
-					if(checked == true) {
-						Registro.RegClientesAct(idAct, idSala, fecha, hora, logedUser, pathClientesActividades);
-						menuCliente(sc);
-						
-					}else {
-						//Si no coinciden, se puede volver a intentar o ir atr·s
-						System.out.println("\nDatos incorrectos");
-						System.out.println("1. Volver a intentar");
-						System.out.println("2. Atrás");
-						opcion = apa.nextInt();
-						if(opcion == 1) {
-							checked=apActividad(sc);
-						}else if(opcion == 2) {
-							menuCliente(sc);
-						}
-					}
-					return checked;
-				}
+		public static boolean apActividad(Scanner sc) throws IOException, MessagingException {
+			
+			//Variable para comprobar si los datos coinciden
+			boolean checked = true;
+			
+			Scanner apa = new Scanner(System.in);
+			int opcion = 0;
+			
+			System.out.println("\n--------------------");
+			System.out.println("APUNTARSE A ACTIVIDAD");
+			System.out.println("--------------------\n");
+			Visualizacion v = new Visualizacion();
+			v.readFileActividades(pathActividades);
+			
+			String fecha;
+			String hora;
+			String idAct;
+			String idSala;
+			
+			//PEDIDA DE ID de la actividad
+			System.out.println("Ingrese el ID de la actividad a la que quiere apuntarse: ");
+			idAct = apa.nextLine();
+			System.out.println("Por favor, confirme los siguientes datos sobre la actividad " + idAct);
+			System.out.println("Ingrese el día de la semana de la actividad:");
+			fecha = apa.nextLine();
+			System.out.println("Ingrese la hora de la actividad:     (hh:mm)");
+			hora = apa.nextLine();
+			System.out.println("Ingrese el ID de la sala de la actividad: ");
+			idSala = apa.nextLine();
+			
+			//crear un nuevo lector csv
+			LoginCSV lec = new LoginCSV();
+			
+			//Comparar valores ingresados con los del archivo csv -> se usa clase LoginCSV
+			checked = lec.readFileAct(pathActividades, idAct, fecha, hora, idSala);
+			
+			//Si coinciden los datos
+			if(checked == true) {
+				Registro.RegClientesAct(idAct, idSala, fecha, hora, logedUser, pathClientesActividades);
+				menuCliente(sc);
 				
-					
+			}else {
+				//Si no coinciden, se puede volver a intentar o ir atr·s
+				System.out.println("1. Volver a intentar");
+				System.out.println("2. Atrás");
+				opcion = apa.nextInt();
+				if(opcion == 1) {
+					checked=apActividad(sc);
+				}else if(opcion == 2) {
+					menuCliente(sc);
+				}
+			}
+			return checked;
+		}
+		
+			
 									
 						
 //VISUALIZAR - REGISTRO DE CLIENTES
@@ -616,7 +672,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			fnac = reg.nextLine();
 			System.out.println("Ingrese Correo Electrónico:");
 			correo = reg.nextLine();
-			System.out.println("Ingrese el número de su tarjeta de crédito:");
+			System.out.println("Ingrese el n˙mero de su tarjeta de crÈdito:");
 			tarjeta = reg.nextLine();
 			
 			//CREO UN NUEVO CLIENTE

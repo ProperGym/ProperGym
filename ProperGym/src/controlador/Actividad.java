@@ -83,3 +83,4 @@ public class Actividad {
 		this.nParticipantes = nParticipantes;
 	}
 }
+

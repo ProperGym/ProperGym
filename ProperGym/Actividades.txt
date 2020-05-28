@@ -11,12 +11,12 @@ HIIT,007,33,25,E003,Martes,18:30,25,0
 Core,002,22,10,E002,Martes,19:00,25,1
 Flex,008,55,25,E004,Martes,17:30,25,3
 Yoga,009,00,20,E000,Miercoles,11:00,1,1
-Dance,000,00,20,E000,Miercoles,12:00,20,2
+Dance,000,00,20,E000,Miercoles,12:00,20,3
 Body,010,00,20,E000,Miercoles,17:30,1,0
 Energy,001,11,20,E001,Miercoles,18:30,25,0
 GAP,003,33,25,E003,Miercoles,19:00,25,1
 Dance,000,00,20,E000,Jueves,11:00,1,1
-Energy,001,11,20,E001,Jueves,12:00,20,2
+Energy,001,11,20,E001,Jueves,12:00,20,3
 Core,002,22,10,E002,Jueves,12:30,1,0
 GAP,003,33,25,E003,Jueves,17:30,25,0
 Pilates,004,33,25,E004,Jueves,18:30,25,1
