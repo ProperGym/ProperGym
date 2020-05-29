@@ -41,17 +41,17 @@ public void readFileActividades(String path) {
 	
 	try {
 		buff = new BufferedReader(new FileReader(path));
-		System.out.println(" -------------------------------------------------------------------------------------------------------------------");
-    	System.out.println("|	                                      ACTIVIDADES                                                           |");
-		System.out.println(" -------------------------------------------------------------------------------------------------------------------");
-    	System.out.println("|	ID	     Fecha	     Hora	    Sala     Nombre	    Empleado	Capacidad Aforo   Plaza     |");
-    	System.out.println(" -------------------------------------------------------------------------------------------------------------------");
+		System.out.println(" --------------------------------------------------------------------------------------------------------------------------");
+    	System.out.println("|	                                               ACTIVIDADES                                                         |");
+		System.out.println(" --------------------------------------------------------------------------------------------------------------------------");
+    	System.out.println("|	ID	     Fecha	     Hora	    Sala     Nombre	    Empleado	Capacidad  Aforo max   Ocupadas    |");
+    	System.out.println(" --------------------------------------------------------------------------------------------------------------------------");
 		while ((line = buff.readLine()) != null) {
 			String[] fileAct = line.split(delimiter);
 			
-			System.out.println("|	"+ fileAct[1] +"	     "+ fileAct[5] +"	     "+ fileAct[6] +"	     "+ fileAct[2] + "	     "+ fileAct[0] +"	     "+ fileAct[4] + "	     "+ fileAct[3] +"	     "+ fileAct[7] + "	     "+ fileAct[8] + "      |");			
+			System.out.println("|	"+ fileAct[1] +"	     "+ fileAct[5] +"	     "+ fileAct[6] +"	     "+ fileAct[2] + "	     "+ fileAct[0] +"	     "+ fileAct[4] + "	     "+ fileAct[3] +"	     "+ fileAct[7] + "	          "+ fileAct[8] + "        |");			
 		}
-		System.out.println("|-------------------------------------------------------------------------------------------------------------------|");
+		System.out.println("|--------------------------------------------------------------------------------------------------------------------------|");
 	}catch(FileNotFoundException e){
 		e.printStackTrace();
 	}catch (Exception e) {

@@ -1,8 +1,3 @@
-Prueba,Cero,E000
-Primero,Uno,E001
-Segundo,Dos,E002
-Tercero,Tres,E003
-Cuarto,Cuatro,E004
 Fritz,Vega,1675
 Mufutau,Velasquez,1680
 Leonardo,Church,1687

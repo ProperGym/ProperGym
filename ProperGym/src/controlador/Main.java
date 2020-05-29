@@ -52,31 +52,32 @@ public static void main(String[] args) throws IOException, MessagingException {
 		
 	}
 	
-//MEN⁄ PRINCIPAL
+//MENâ�„ PRINCIPAL
 	public static int menuPrincipal(Scanner sc) throws IOException, MessagingException {
-		System.out.println("\n\n		<-------------------BIENVENIDO A PROPERGYM--------------------->");
+		System.out.println("\n\n<--------------BIENVENIDO A PROPERGYM---------------->");
 		System.out.println(" ___________________________________________________");
 		System.out.println("|          Digite el número de su elección          |");
-		System.out.println(" ---------------------------------------------------");
+		System.out.println("|---------------------------------------------------|");
 		System.out.println("|  1. Administrador                                 |");
-		System.out.println(" ---------------------------------------------------");
+		System.out.println("|---------------------------------------------------|");
 		System.out.println("|  2. Cliente                                       |");
-		System.out.println(" ---------------------------------------------------");
+		System.out.println("|---------------------------------------------------|");
 		System.out.println("|  3. Visualizar Actividades/Registro membresía     |");
+		System.out.println("|---------------------------------------------------|");
+		System.out.println("|  4. ProperGym - Información                       |");
 		System.out.println("|___________________________________________________|");
-		//System.out.println("4. ProperGym - InformaciÛn");
 		
-		//ELEGIMOS OPCI”N DEL MEN⁄
+		//ELEGIMOS OPCIâ€�N DEL MENâ�„
 		int opcion = 0;
 		
-		//VARIABLES SI EL LOGIN SE COMPLET” O NO
+		//VARIABLES SI EL LOGIN SE COMPLETâ€� O NO
 		boolean logA = false;
 		boolean logC = false;
 				
-		//LEE LA OPCI”N
+		//LEE LA OPCIâ€�N
 		opcion = sc.nextInt();
 		
-		//ESCOGE LA OPCI”N
+		//ESCOGE LA OPCIâ€�N
 		switch (opcion) {
 		case 1:
 			logA=loginAdministrador(sc);
@@ -87,10 +88,10 @@ public static void main(String[] args) throws IOException, MessagingException {
 		case 3:
 			visActividadesE(sc);
 			break;
-		/* case 4:
+		 case 4:
 		  	visInfo(sc);
 		  	break;
-		 */
+		 
 		}
 		return opcion;
 	}
@@ -122,15 +123,15 @@ public static void main(String[] args) throws IOException, MessagingException {
 			//Comparar valores ingresados con los del archivo csv -> se usa clase LoginCSV
 			logeado = lec.readFileA(pathA, usuarioA, passwordA);
 			
-			//Si coinciden usuario y contraseÒa
+			//Si coinciden usuario y contraseÃ’a
 			if(logeado == true) {
-				//nos dirigimos al men˙ del Administrador
+				//nos dirigimos al menË™ del Administrador
 				menuA(sc);
 			}else {
-				//Si no coinciden, se puede volver a intentar o ir atr·s
+				//Si no coinciden, se puede volver a intentar o ir atrÂ·s
 				System.out.println("LOGIN INCORRECTO");
 				System.out.println("1. Volver a intentar");
-				System.out.println("2. Atrás");
+				System.out.println("2. AtrÃ¡s");
 				opcion = admi.nextInt();
 				if(opcion == 1) {
 					logeado=loginAdministrador(sc);
@@ -141,7 +142,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			return logeado;
 		}
 		
-		//MEN⁄ DE ADMINISTRADOR
+		//MENâ�„ DE ADMINISTRADOR
 		public static int menuA(Scanner sc) throws IOException, MessagingException {
 			Scanner vis = new Scanner(System.in);
 			int opcion = 0;
@@ -187,14 +188,14 @@ public static void main(String[] args) throws IOException, MessagingException {
 			System.out.println(" ---------------------------------------------------");
 			System.out.println("|  Enviar por correo                             |");
 			System.out.println(" ---------------------------------------------------");
-			System.out.print("Se generaron los informes y se enviará a la cuenta determinada");
+			System.out.print("Se generaron los informes y se enviarán a la cuenta determinada");
 
 			Properties propiedad = new Properties();
 	        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
 	        propiedad.setProperty("mail.smtp.starttls.enable", "true");
 	        propiedad.setProperty("mail.smtp.port", "587");
 	        Session sesion = Session.getDefaultInstance(propiedad);
-	        String correoEnvia = "danicruba67@gmail.com";
+/*email*/   String correoEnvia = "danicruba67@gmail.com";
 	        String contrasena = "nonita1*";
 	        String receptor = "danicruba67@gmail.com";
 	        String asunto = "Prueba Proyecto Ingenieria";
@@ -224,7 +225,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 	        } catch (MessagingException ex) {
 	            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
 	        }
-	        System.out.print("\nIngresa 1 para volver");
+	        System.out.print("\nIngrese 1 para volver");
 	        opcion = vis.nextInt();
 	        if(opcion ==1) {
 	        	opcion=menuA(sc);
@@ -318,12 +319,12 @@ public static void main(String[] args) throws IOException, MessagingException {
 				idSala = agAct.nextLine();
 				System.out.println("Ingrese capacidad de la sala:");
 				capacidadSala = agAct.nextInt();
-				agAct.nextLine(); //separaciÛn despuÈs de nextInt
+				agAct.nextLine(); //separaciÃ›n despuÃˆs de nextInt
 				System.out.println("Ingrese ID del entrenador:");
 				idEmpleado = agAct.nextLine();
-				System.out.println("Ingrese dÌa de la actividad:");
+				System.out.println("Ingrese día de la semana de la actividad:");
 				fecha = agAct.nextLine();
-				System.out.println("Ingrese hora de la actividad:     (hh:mm)");
+				System.out.println("Ingrese hora de la actividad: (hh:mm)");
 				hora = agAct.nextLine();
 				System.out.println("Indique si es individual (1) o grupal (2):");
 				int option = agAct.nextInt();
@@ -496,7 +497,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 		//LOGIN DEL CLIENTE
 		public static boolean loginCliente(Scanner sc) throws IOException, MessagingException {
 			
-			//Variable para comprobar que usuario y contraseÒa coinciden
+			//Variable para comprobar que usuario y contraseÃ’a coinciden
 			boolean logeado = true;
 			
 			String usuarioC;
@@ -536,7 +537,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			return logeado;
 		}
 	
-		//MEN⁄ CLIENTE
+		//MENâ�„ CLIENTE
 		public static int menuCliente(Scanner sc) throws IOException, MessagingException {
 			Scanner mec = new Scanner(System.in);
 			int opcion = 0;
@@ -589,7 +590,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			System.out.println("Por favor, confirme los siguientes datos sobre la actividad " + idAct);
 			System.out.println("Ingrese el día de la semana de la actividad:");
 			fecha = apa.nextLine();
-			System.out.println("Ingrese la hora de la actividad:     (hh:mm)");
+			System.out.println("Ingrese la hora de la actividad: (hh:mm)");
 			hora = apa.nextLine();
 			System.out.println("Ingrese el ID de la sala de la actividad: ");
 			idSala = apa.nextLine();
@@ -606,7 +607,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 				menuCliente(sc);
 				
 			}else {
-				//Si no coinciden, se puede volver a intentar o ir atr·s
+				//Si no coinciden, se puede volver a intentar o ir atrÂ·s
 				System.out.println("1. Volver a intentar");
 				System.out.println("2. Atrás");
 				opcion = apa.nextInt();
@@ -632,7 +633,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 		v.readFileActividades(pathActividades);
 
 		System.out.println("\nDigite el número de su elección:");
-		System.out.println("1. Registrarse/MembresÌa");
+		System.out.println("1. Registrarse/Membresía");
 		System.out.println("2. Atrás");
 		opcion = visA.nextInt();
 		if(opcion == 1) {
@@ -642,9 +643,10 @@ public static void main(String[] args) throws IOException, MessagingException {
 		}
 	}
 	
-	//REGISTRO DE NUEVO CLIENTE PARA MEMBRESÕA
+	//REGISTRO DE NUEVO CLIENTE PARA MEMBRESÍA
 		public static int registro(Scanner sc) throws IOException, MessagingException {
 			Scanner reg = new Scanner(System.in);
+			int opcion = 0;
 			boolean sesion = false;
 			
 			String usuario;
@@ -658,7 +660,7 @@ public static void main(String[] args) throws IOException, MessagingException {
 			
 			//PEDIDA DE DATOS
 			System.out.println("\n--------------------");
-			System.out.println("REGISTRO MEMBRESIA");
+			System.out.println("REGISTRO MEMBRESÍA");
 			System.out.println("--------------------");
 			System.out.println("Ingrese usuario:");
 			usuario = reg.nextLine();
@@ -668,11 +670,11 @@ public static void main(String[] args) throws IOException, MessagingException {
 			Nombre = reg.nextLine();
 			System.out.println("Ingrese Primer Apellido:");
 			Apellido = reg.nextLine();
-			System.out.println("Ingrese Fecha de Nacimiento:");
+			System.out.println("Ingrese Fecha de Nacimiento: (dd/mm/yyyy)");
 			fnac = reg.nextLine();
-			System.out.println("Ingrese Correo Electrónico:");
+			System.out.println("Ingrese Correo Electrónico: ");
 			correo = reg.nextLine();
-			System.out.println("Ingrese el n˙mero de su tarjeta de crÈdito:");
+			System.out.println("Ingrese el número de su tarjeta de crédito: (16 dígitos)");
 			tarjeta = reg.nextLine();
 			
 			//CREO UN NUEVO CLIENTE
@@ -683,8 +685,41 @@ public static void main(String[] args) throws IOException, MessagingException {
 			
 			System.out.print("Usuario registrado con éxito\n");
 			
-			//ME DIRIJO AL INICIO DE SESI”N DEL USUARIO
-			sesion = loginCliente(sc);
-			return 0;			
+			System.out.println("\n1. Inicie sesión como cliente");
+			System.out.println("2. Salir");
+			opcion = reg.nextInt();
+			
+			switch (opcion) {
+			case 1:
+				loginCliente(sc);
+				break;
+			case 2:
+				menuPrincipal(sc);
+				break;
+			}
+			return opcion;
+						
 		}
+		
+// INFORMACIÓN PROPERGYM
+		public static void visInfo(Scanner sc) throws IOException, MessagingException {
+			Scanner visI = new Scanner(System.in);
+			int opcion = 0;
+			System.out.println("\n<---------- QUIÉNES SOMOS  -  PROPERGYM ---------->");
+			System.out.println("\nProperGym es una solución programada de gestión pensada especialmente para gimnasios.");
+			
+			System.out.println("\nOfrecemos la posibilidad de sesiones diferenciadas para clientes y administradores, registro de clientes,");
+			System.out.println("creación, modificación y visualización de actividades y empleados desde el 'modo administrador',");
+			System.out.println("envío de email y visualización del horario personal para cada uno de los clientes.");
+			System.out.println("\nProperGym está pensado para facilitar la coordinación de las tareas de un gimnasio mientras le otorga al");
+			System.out.println("cliente la posibilidad de previsualizar horarios y tipos de entrenamientos y controlar sus actividades");
+			System.out.println("de una manera considerablemente más eficiente.");
+			System.out.println("\nAl gimnasio le podrá facilitar asimismo información sobre las actividades más demandadas, el aforo medio");
+			System.out.println("de las clases, los horarios más concurridos o los días de mayor afluencia.");
+			System.out.println("\nEn futuras versiones, con interfaz gráfica, se ajustará a la LOPD (Ley Orgánica de Protección de Datos)");
+			
+			System.out.println("\n\n1. Atrás");
+			opcion = visI.nextInt();
+			opcion = menuPrincipal(sc);
+			}
 }
