@@ -195,8 +195,8 @@ public static void main(String[] args) throws IOException, MessagingException {
 	        propiedad.setProperty("mail.smtp.starttls.enable", "true");
 	        propiedad.setProperty("mail.smtp.port", "587");
 	        Session sesion = Session.getDefaultInstance(propiedad);
-/*email*/   String correoEnvia = "danicruba67@gmail.com";
-	        String contrasena = "nonita1*";
+/*email*/   String correoEnvia = "";
+	        String contrasena = "";
 	        String receptor = "danicruba67@gmail.com";
 	        String asunto = "Prueba Proyecto Ingenieria";
 	        String mensaje= "Prueba txt";
